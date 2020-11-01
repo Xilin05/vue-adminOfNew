@@ -170,37 +170,37 @@ export default {
                         // })
                         
                         
-                            // console.log(res);
-                            // const { msg, code } = res.data;
-                            const {
-                                data,
-                                meta: { msg, status }
-                            } = res.data;
-                            if (status === 200) {
-                                // 验证通过，登陆成功
-                                // 1. 提示成功
-                                this.logining = false;
-                                sessionStorage.setItem(
-                                    "login",
-                                    this.ruleForm.username
-                                );
-                                // 2. 跳转首页
-                                this.$message({
-                                    message: "登陆成功！",
-                                    type: "success"
-                                });
-                                this.$router.push({ path: "/dashboard" });
-                            } else {
-                                // 验证失败，登录不成功
-                                // 1. 提示错误
-                                // console.log(res.data);
-                                this.$message.error(
-                                    "登陆失败！请检查用户名和密码！"
-                                );
-                            }
-                        // .catch(err => {
-                        //     console.error(err);
-                        // });
+                        // console.log(res);
+                        // const { msg, code } = res.data;
+                        const {
+                            data,
+                            meta: { msg, status }
+                        } = res.data;
+                        if (status === 200) {
+                            // 验证通过，登陆成功
+                            // 1. 提示成功
+                            this.logining = false;
+                            sessionStorage.setItem(
+                                "login",
+                                this.ruleForm.username
+                            );
+                            // 2. 跳转首页
+                            this.$message({
+                                message: "登陆成功！",
+                                type: "success"
+                            });
+                            this.$router.push({ path: "/dashboard" });
+                        } else {
+                            // 验证失败，登录不成功
+                            // 1. 提示错误
+                            // console.log(res.data);
+                            this.$message.error(
+                                "登陆失败！请检查用户名和密码！"
+                            );
+                        }
+                    // .catch(err => {
+                    //     console.error(err);
+                    // });
                 }
             });
         },

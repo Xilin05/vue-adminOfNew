@@ -102,6 +102,12 @@ export default {
             ]
         };
     },
+    beforeCreate() {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            this.$router.push({ path: "/" });
+        }
+    },
     mounted() {
         //echarts初始化应在钩子函数mounted()中,这个钩子函数是在el 被新创建的 vm.$el 替换
         //并挂载到实例上去之后调用

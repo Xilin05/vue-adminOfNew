@@ -190,7 +190,7 @@ export default {
                         // token验证
                         localStorage.setItem("token", data.token);
                         // 验证通过，登陆成功
-                        console.log(res, data);
+                        // console.log(res.data);
                         // 1. 提示成功
                         this.logining = false;
                         sessionStorage.setItem("login", this.ruleForm.username);

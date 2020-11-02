@@ -53,8 +53,11 @@ export default {
         // 用户名下拉菜单选择事件
         handleCommand(command) {
             if (command == "loginout") {
-                localStorage.removeItem("ms_username");
-                this.$router.push("/login");
+                // localStorage.removeItem("ms_username");
+                // this.$router.push("/login");
+                localStorage.clear();
+                this.$message.success("退出成功");
+                this.$router.push("/Login");
             }
             if (command == "info") {
                 this.$router.push("/changePsd");

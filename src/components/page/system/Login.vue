@@ -3,28 +3,36 @@
     <div class="contain">
       <div class="big-box" :class="{active:isLogin}">
         <!-- <div class="" > -->
-          <el-form class="big-contain"  :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" v-if="isLogin">
+           <el-form class="big-contain big-box-login" :class="{active:isOpacity}"  :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" v-if="isLogin">
             <div class="btitle">账号登录</div>
-            <div class="bform1">
+             <div class="bform1">
               <el-form-item label="用户名" prop="username" >
-              <el-input class="" v-model="ruleForm.username" autocomplete="off"></el-input>
-            </el-form-item>
+              <el-input class="" v-model="ruleForm.username"  autocomplete="off"></el-input>
+              </el-form-item>
             <el-form-item label="密码"  prop="password">
               <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
             </el-form-item>
             </div>
-            <div style="display:flex;width:100%;margin:0px 80px">
-              <el-form-item style="width:45%">
-            <el-button class="bbutton" style="width:60%;" type="primary" @click.prevent="submitForm('ruleForm')">提交</el-button>
+                <div style="display:flex;width:80%;justify-content:space-between;text-center:center;">
+              <el-form-item style="width:60%">
+            <el-button 
+                class="bbutton" 
+                style="width:60%;min-width:79px" 
+                type="primary" 
+                @click.prevent="submitForm('ruleForm')"
+                @keyup.enter.native="submitForm('ruleForm')"
+            >
+            提交
+            </el-button>
           </el-form-item>
-          <el-form-item style="width:45%">
-          <el-button class="bbutton" style="width:60%;" @click.prevent="resetForm('ruleForm')">重置</el-button>
+          <el-form-item style="width:60%">
+          <el-button class="bbutton" style="width:60%;min-width:79px" @click.prevent="resetForm('ruleForm')">重置</el-button>
           </el-form-item>
             </div>
             
         </el-form>
         <!-- </div> -->
-        <el-form class="big-contain" :class="{active:isLogin}" :model="ruleForm" status-icon :rules="rules" ref="forgetForm" label-width="100px" v-else>
+        <el-form class="big-contain big-box-sign" :class="{active:isLogin}" :model="ruleForm" status-icon :rules="rules" ref="forgetForm" label-width="100px" v-else>
             <div class="btitle">找回密码</div>
             <div class="bform1">
               <el-form-item label="用户名" prop="username01" >
@@ -34,15 +42,15 @@
               <el-input type="email" v-model="forgetForm.useremail" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="验证码"  prop="vecode">
-              <el-input type="text" v-model="forgetForm.vecode" autocomplete="off"></el-input>
+              <el-input type="text" v-model="forgetForm.vecode" autocomplete="off" ></el-input>
             </el-form-item>
             </div>
-            <div style="display:flex;width:100%;padding:0px 20px">
-              <el-form-item style="width:45%">
-            <el-button class="bbutton" style="width:60%" type="primary" @click.prevent="submitForgetForm('forgetForm')">提交</el-button>
+            <div style="display:flex;width:80%;justify-content:space-between;text-center:center;">
+              <el-form-item style="width:60%">
+            <el-button class="bbutton" style="width:60%;min-width:79px" type="primary" @click.prevent="submitForgetForm('forgetForm')"  >提交</el-button>
           </el-form-item>
-          <el-form-item style="width:45%">
-          <el-button class="bbutton" style="width:60%" @click.prevent="resetForm('forgetForm')">重置</el-button>
+          <el-form-item style="width:60%">
+          <el-button class="bbutton" style="width:60%;min-width:79px" @click.prevent="resetForm('forgetForm')">重置</el-button>
           </el-form-item>
             </div>
             <el-form-item style="">
@@ -93,6 +101,7 @@ export default {
         // ---------------------------------------
         return {
             isLogin: true,
+            isOpacity: true,
             rules: {
                 username: [
                     {
@@ -149,58 +158,57 @@ export default {
         },
         changeForgetType() {
             this.isLogin = !this.isLogin;
+            this.isOpacity = !this.isOpacity;
             this.forgetForm.username = "";
             this.forgetForm.useremail = "";
             this.forgetForm.vecode = "";
         },
         changeLoginType() {
             this.isLogin = !this.isLogin;
+            this.isOpacity = !this.isOpacity;
             this.ruleForm.username = "";
             this.ruleForm.password = "";
         },
         // 新
-        async submitForm(formName) {
-            this.$refs.ruleForm.validate(valid => {
+        submitForm(formName) {
+            this.$refs.ruleForm.validate(async valid => {
                 if (valid) {
                     this.logining = true;
                     const res = await this.$http.post("login", this.ruleForm);
-                        // .post("/login", this.ruleForm2, {
-                        //   headers: headers,
-                        //   transformRequest: transformRequest
-                        // })
-                        
-                        
-                            // console.log(res);
-                            // const { msg, code } = res.data;
-                            const {
-                                data,
-                                meta: { msg, status }
-                            } = res.data;
-                            if (status === 200) {
-                                // 验证通过，登陆成功
-                                // 1. 提示成功
-                                this.logining = false;
-                                sessionStorage.setItem(
-                                    "login",
-                                    this.ruleForm.username
-                                );
-                                // 2. 跳转首页
-                                this.$message({
-                                    message: "登陆成功！",
-                                    type: "success"
-                                });
-                                this.$router.push({ path: "/dashboard" });
-                            } else {
-                                // 验证失败，登录不成功
-                                // 1. 提示错误
-                                // console.log(res.data);
-                                this.$message.error(
-                                    "登陆失败！请检查用户名和密码！"
-                                );
-                            }
-                        // .catch(err => {
-                        //     console.error(err);
-                        // });
+                    // .post("/login", this.ruleForm2, {
+                    //   headers: headers,
+                    //   transformRequest: transformRequest
+                    // })
+
+                    // console.log(res);
+                    // const { msg, code } = res.data;
+                    const {
+                        data,
+                        meta: { msg, status }
+                    } = res.data;
+                    if (status === 200) {
+                        // token验证
+                        localStorage.setItem("token", data.token);
+                        // 验证通过，登陆成功
+                        console.log(res, data);
+                        // 1. 提示成功
+                        this.logining = false;
+                        sessionStorage.setItem("login", this.ruleForm.username);
+                        // 2. 跳转首页
+                        this.$message({
+                            message: "登陆成功！",
+                            type: "success"
+                        });
+                        this.$router.push({ path: "/dashboard" });
+                    } else {
+                        // 验证失败，登录不成功
+                        // 1. 提示错误
+                        // console.log(res.data);
+                        this.$message.error("登陆失败！请检查用户名和密码！");
+                    }
+                    // .catch(err => {
+                    //     console.error(err);
+                    // });
                 }
             });
         },
@@ -305,24 +313,50 @@ el-form-item {
 }
 .contain {
     width: 60%;
+    min-width: 512px;
     height: 60%;
     position: relative;
+    /* margin: 10px 10px; */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
     border-radius: 20px;
-    box-shadow: 0 0 3px #f0f0f0, 0 0 6px #f0f0f0;
+    box-shadow: 5 5 20px #adacac, 5 5 20px #a8a6a6;
 }
 .big-box {
+    display: flex;
     width: 70%;
+    /* min-width: 256px; */
     height: 100%;
     position: absolute;
     top: 0;
     left: 30%;
+    /* opacity: 1; */
     transform: translateX(0%);
     transition: all 1s;
 }
+
+.big-box-login {
+    opacity: 0;
+    transition: all 0.6s;
+}
+.big-box-login.active {
+    opacity: 1;
+    transition: all 0.6s;
+}
+.big-box-sign {
+    opacity: 1;
+    transform: translateX(0%);
+    transition: all 0.6s;
+}
+
+.big-box-sign.active {
+    opacity: 0;
+    transform: translateX(0%);
+    transition: all 0.6s;
+}
+
 .big-contain {
     width: 100%;
     height: 100%;
@@ -405,6 +439,7 @@ el-form-item {
 }
 .small-box {
     width: 30%;
+    /* min-width: 160px; */
     height: 100%;
     /* rgb(50, 65, 87) */
     background: linear-gradient(135deg, rgb(98, 148, 224), rgb(32, 74, 138));
@@ -451,7 +486,8 @@ el-form-item {
 
 .big-box.active {
     left: 0;
-    transition: all 0.5s;
+    transition: all 1s;
+    /* opacity: 1; */
 }
 .small-box.active {
     left: 100%;

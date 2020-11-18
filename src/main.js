@@ -5,6 +5,7 @@ import ElementUI from 'element-ui';
 //引入阿里巴巴图标库
 import './assets/icon/iconfont.css';
 import './assets/iconfont/iconfont.css';
+import './assets/iconfont/ali_iconfont.css';
 import 'element-ui/lib/theme-chalk/index.css'; // 默认主题
 // import '../static/css/theme-green/index.css';       // 浅绿色主题
 import router from './router';

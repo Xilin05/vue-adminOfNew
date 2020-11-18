@@ -33,29 +33,42 @@ export default {
             items: [
                 {
                     icon: "iconfont icon-xitongshouye",
+                    // icon: "iconfont icon-biaoge",
                     index: "dashboard",
                     title: "系统首页"
                 },
                 {
-                    icon: "iconfont icon-jituanguanli",
-                    index: "3",
+                    icon: "iconfont icon-shuju",
+                    index: "roomAllView",
+                    title: "教室总览",
+                    subs: [
+                        {
+                            index: "roomSearch",
+                            title: "教室搜索",
+                            icon: "iconfont  icon-sousuo"
+                        }
+                    ]
+                },
+                {
+                    icon: "iconfont icon-yunwei",
+                    index: "roomManage",
                     title: "教室管理",
                     subs: [
                         {
                             index: "roomSearch",
                             title: "教室搜索",
-                            icon: "iconfont  icon-zuzhijiagou"
+                            icon: "iconfont  icon-sousuo"
                         },
 
                         {
                             index: "roomView",
                             title: "教室总览",
-                            icon: "iconfont icon-bumenguanli"
+                            icon: "iconfont icon-shuju"
                         },
                         {
                             index: "roomAlter",
                             title: "教室修改",
-                            icon: "iconfont icon-gangweiguanli"
+                            icon: "iconfont icon-bianji"
                         }
                         // {
                         //     index: "dicDengji",
@@ -70,7 +83,19 @@ export default {
                     ]
                 },
                 {
-                    icon: "iconfont icon-quanxian",
+                    icon: "iconfont icon-guanxitu",
+                    index: "roomApply",
+                    title: "教室申请",
+                    subs: [
+                        {
+                            index: "applyRecord",
+                            title: "申请记录",
+                            icon: "iconfont icon-renwu"
+                        }
+                    ]
+                },
+                {
+                    icon: "iconfont icon-qingbaojiankong",
                     index: "roomAudit",
                     title: "教室审批",
                     subs: [
@@ -82,17 +107,22 @@ export default {
                         {
                             index: "applyRecord",
                             title: "申请记录",
-                            icon: "iconfont icon-jiaoseguanli"
+                            icon: "iconfont icon-renwu"
                         },
                         {
-                            icon: "iconfont icon-zuzhijiagou",
+                            icon: "iconfont icon-wendang",
                             index: "auditRecord",
                             title: "审批记录"
                         }
                     ]
                 },
                 {
-                    icon: "iconfont icon-jiaowuguanli",
+                    icon: "iconfont icon-zhexiantu",
+                    index: "applyCharts",
+                    title: "教室申请情况"
+                },
+                {
+                    icon: "iconfont icon-bingtu",
                     index: "useCharts",
                     title: "教室使用情况",
                     subs: [
@@ -144,37 +174,49 @@ export default {
                     ]
                 },
                 {
-                    icon: "iconfont icon-xiaoxiguanli",
+                    icon: "iconfont icon-fenzu",
+                    index: "userManage",
+                    title: "用户管理",
+                    subs: [
+                        {
+                            index: "userTable",
+                            title: "用户列表",
+                            icon: "iconfont icon-yonghu"
+                        }
+                    ]
+                },
+                {
+                    icon: "iconfont icon-quanxian",
                     index: "authorityManage",
                     title: "权限管理",
                     subs: [
                         {
-                            index: "studentAuthority",
-                            title: "学生权限",
+                            index: "icon-kehuguanli",
+                            title: "角色列表",
                             icon: "iconfont icon-_yijicaidanduanxinguanli"
                         },
                         {
                             index: "manageRecord",
-                            title: "管理记录",
-                            icon: "iconfont icon-_yijicaidanduanxinguanli"
+                            title: "权限列表",
+                            icon: "iconfont icon-tongdao"
                         }
                     ]
                 },
 
                 {
-                    icon: "iconfont icon-yingyongguanli",
+                    icon: "iconfont icon-shangchuan1",
                     index: "fileUpload",
                     title: "文件上传",
                     subs: [
                         {
                             index: "uploadRecord",
                             title: "上传记录",
-                            icon: "iconfont icon-ziyuan"
+                            icon: "iconfont icon-rizhi-2"
                         },
                         {
                             index: "roomUpload",
                             title: "导入设施",
-                            icon: "iconfont icon-fanwei"
+                            icon: "iconfont icon-shujuku1"
                         }
                         // {
                         //     index:'apiConfig',
@@ -182,6 +224,11 @@ export default {
                         //     icon:'iconfont icon-jiekoupeizhi'
                         // }
                     ]
+                },
+                {
+                    icon: "iconfont icon-yingyongguanli",
+                    index: "personalCentry",
+                    title: "个人中心"
                 }
             ]
         };

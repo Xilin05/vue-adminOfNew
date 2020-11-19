@@ -17,62 +17,145 @@ export default new Router({
                     component: resolve => require(['../components/page/system_main/Dashboard.vue'], resolve),
                     meta: { title: '系统首页' }
                 },
+                // 教室管理
                 {
-                    path: '/VgroupManage',
-                    component: resolve => require(['../components/page/org/VgroupManage.vue'], resolve),
-                    meta: { title: '组织结构' }
+                    path: '/roomSearch',
+                    component: resolve => require(['../components/page/roomManage/roomSearch.vue'], resolve),
+                    meta: { title: '教室搜索' }
                 },
                 {
-                    path: '/dicZhiwei',
-                    component: resolve => require(['../components/page/org/dicZhiwei.vue'], resolve),
-                    meta: { title: '职位管理' }
+                    path: '/roomView',
+                    component: resolve => require(['../components/page/roomManage/roomView.vue'], resolve),
+                    meta: { title: '教室总览' }
                 },
                 {
-                    path: '/dicGangwei',
-                    component: resolve => require(['../components/page/org/dicGangwei.vue'], resolve),
-                    meta: { title: '岗位管理' }
+                    path: '/roomAlter',
+                    component: resolve => require(['../components/page/roomManage/roomAlter.vue'], resolve),
+                    meta: { title: '教室修改' }
+                },
+                // 教室申请（学生向）
+                {
+                    path: '/applyRecord',
+                    component: resolve => require(['../components/page/applyRecord/applyRecord.vue'], resolve),
+                    meta: { title: '申请记录(学生个人)' }
+                },
+                // 教室审批
+                {
+                    path: '/waitingAudit',
+                    component: resolve => require(['../components/page/roomAudit/waitingAudit.vue'], resolve),
+                    meta: { title: '待审批' }
                 },
                 {
-                    path: '/dicDengji',
-                    component: resolve => require(['../components/page/org/dicDengji.vue'], resolve),
-                    meta: { title: '等级管理' }
+                    path: '/roomApplyRecord',
+                    component: resolve => require(['../components/page/roomAudit/roomApplyRecord.vue'], resolve),
+                    meta: { title: '教室申请记录' }
                 },
                 {
-                    path: '/NEgroup',
-                    component: resolve => require(['../components/page/org/NEgroup.vue'], resolve),
-                    meta: { title: '修改集团' }
+                    path: '/auditRecord',
+                    component: resolve => require(['../components/page/roomAudit/auditRecord.vue'], resolve),
+                    meta: { title: '审批记录' }
+                },
+                // 教室申请情况
+                {
+                    path: '/applyCharts',
+                    component: resolve => require(['../components/page/chartsPage/applyCharts.vue'], resolve),
+                    meta: { title: '教室申请情况' }
                 },
                 {
-                    path: '/dicManage',
-                    component: resolve => require(['../components/page/org/dicManage.vue'], resolve),
-                    meta: { title: '字典管理' },
-                    // children:[{
-                    //     path:'dicList/:type',
-                    //     component:resolve => require(['../components/page/org/dicList.vue'], resolve),
-                    //     meta: { title: '字典数据' }
-                    // }
-                    // ]
+                    path: '/useCharts',
+                    component: resolve => require(['../components/page/chartsPage/useCharts.vue'], resolve),
+                    meta: { title: '教室使用情况' }
+                },
+                // 用户管理
+                {
+                    path: '/userList',
+                    component: resolve => require(['../components/page/userlist/userlist.vue'], resolve),
+                    meta: { title: '用户列表' }
+                },
+                // 权限管理
+                {
+                    path: '/roleList',
+                    component: resolve => require(['../components/page/authorityManage/rolelist.vue'], resolve),
+                    meta: { title: '角色列表' }
                 },
                 {
-                    path: '/dicList',
-                    component: resolve => require(['../components/page/org/dicList.vue'], resolve),
-                    meta: { title: '字典数据' }
+                    path: '/authorityList',
+                    component: resolve => require(['../components/page/authorityManage/authorityList.vue'], resolve),
+                    meta: { title: '权限列表' }
+                },
+                // 上传管理
+                {
+                    path: '/uploadRecord',
+                    component: resolve => require(['../components/page/fileUpload/uploadRecord.vue'], resolve),
+                    meta: { title: '上传记录' }
                 },
                 {
-                    path: '/Vschool',
-                    component: resolve => require(['../components/page/org/Vschool.vue'], resolve),
-                    meta: { title: '查看学校' }
+                    path: '/roomUpload',
+                    component: resolve => require(['../components/page/fileUpload/roomUpload.vue'], resolve),
+                    meta: { title: '导入设施' }
                 },
-                {
-                    path: '/NEschool',
-                    component: resolve => require(['../components/page/org/NEschool.vue'], resolve),
-                    meta: { title: '修改学校' }
-                },
-                {
-                    path: '/Nschool',
-                    component: resolve => require(['../components/page/org/Nschool.vue'], resolve),
-                    meta: { title: '新增学校' }
-                },
+                // 个人中心
+                // {
+                //     path: '/roomUpload',
+                //     component: resolve => require(['../components/page/fileUpload/roomUpload.vue'], resolve),
+                //     meta: { title: '导入设施' }
+                // },
+                // {
+                //     path: '/VgroupManage',
+                //     component: resolve => require(['../components/page/org/VgroupManage.vue'], resolve),
+                //     meta: { title: '组织结构' }
+                // },
+                // {
+                //     path: '/dicZhiwei',
+                //     component: resolve => require(['../components/page/org/dicZhiwei.vue'], resolve),
+                //     meta: { title: '职位管理' }
+                // },
+                // {
+                //     path: '/dicGangwei',
+                //     component: resolve => require(['../components/page/org/dicGangwei.vue'], resolve),
+                //     meta: { title: '岗位管理' }
+                // },
+                // {
+                //     path: '/dicDengji',
+                //     component: resolve => require(['../components/page/org/dicDengji.vue'], resolve),
+                //     meta: { title: '等级管理' }
+                // },
+                // {
+                //     path: '/NEgroup',
+                //     component: resolve => require(['../components/page/org/NEgroup.vue'], resolve),
+                //     meta: { title: '修改集团' }
+                // },
+                // {
+                //     path: '/dicManage',
+                //     component: resolve => require(['../components/page/org/dicManage.vue'], resolve),
+                //     meta: { title: '字典管理' },
+                // children:[{
+                //     path:'dicList/:type',
+                //     component:resolve => require(['../components/page/org/dicList.vue'], resolve),
+                //     meta: { title: '字典数据' }
+                // }
+                // ]
+                // },
+                // {
+                //     path: '/dicList',
+                //     component: resolve => require(['../components/page/org/dicList.vue'], resolve),
+                //     meta: { title: '字典数据' }
+                // },
+                // {
+                //     path: '/Vschool',
+                //     component: resolve => require(['../components/page/org/Vschool.vue'], resolve),
+                //     meta: { title: '查看学校' }
+                // },
+                // {
+                //     path: '/NEschool',
+                //     component: resolve => require(['../components/page/org/NEschool.vue'], resolve),
+                //     meta: { title: '修改学校' }
+                // },
+                // {
+                //     path: '/Nschool',
+                //     component: resolve => require(['../components/page/org/Nschool.vue'], resolve),
+                //     meta: { title: '新增学校' }
+                // },
                 /* {
                      path: '/deptManage',
                      component: resolve => require(['../components/page/org/deptManage.vue'], resolve),
@@ -88,98 +171,98 @@ export default new Router({
                      // 教职工管理
                      path: '/staffManage',
                      component: resolve => require(['../components/page/permission/staffManage.vue'], resolve),
-                     meta: { title: '教职工管理' }    
+                     meta: { title: '教职工管理' }
                  },*/
-                {
-                    // 新教职工管理
-                    path: '/staffManageNew',
-                    component: resolve => require(['../components/page/permission/staffManageNew.vue'], resolve),
-                    meta: { title: '教职工管理' }
-                },
-                {
-                    // 新增教职工
-                    path: '/NEstaff',
-                    component: resolve => require(['../components/page/permission/NEstaff.vue'], resolve),
-                    meta: { title: '新增教职工' }
-                },
-                {
-                    // 修改教职工
-                    path: '/Estaff',
-                    component: resolve => require(['../components/page/permission/Estaff.vue'], resolve),
-                    meta: { title: '修改教职工' }
-                },
-                {
-                    // 查看教职工管理
-                    path: '/Vstaff',
-                    component: resolve => require(['../components/page/permission/Vstaff.vue'], resolve),
-                    meta: { title: '查看教职工管理' }
-                },
-                {
-                    // 角色管理
-                    path: '/roleManage',
-                    component: resolve => require(['../components/page/permission/roleManage.vue'], resolve),
-                    meta: { title: '角色管理' }
-                },
-                {
-                    // 学期管理
-                    path: '/semesterManage',
-                    component: resolve => require(['../components/page/dean/semesterManage.vue'], resolve),
-                    meta: { title: '学期管理' }
-                },
-                {
-                    // 学科管理
-                    path: '/subjectManage',
-                    component: resolve => require(['../components/page/dean/subjectManage.vue'], resolve),
-                    meta: { title: '学科管理' }
-                },
-                {
-                    // 考试管理
-                    path: '/examManage',
-                    component: resolve => require(['../components/page/dean/examManage.vue'], resolve),
-                    meta: { title: '考试管理', permission: true }
-                },
-                {
-                    // 成绩管理
-                    path: '/scoreManage',
-                    component: resolve => require(['../components/page/dean/scoreManage.vue'], resolve),
-                    meta: { title: '成绩管理' }
-                },
-                {
-                    // 成绩详情
-                    path: '/scoreList',
-                    component: resolve => require(['../components/page/dean/scoreList.vue'], resolve),
-                    meta: { title: '成绩详情' }
-                },
-                {
-                    // 教室管理
-                    path: '/roomManage',
-                    component: resolve => require(['../components/page/dean/roomManage.vue'], resolve),
-                    meta: { title: '教室管理' }
-                },
-                {
-                    // 课程表管理
-                    path: '/classManage',
-                    component: resolve => require(['../components/page/dean/classManage.vue'], resolve),
-                    meta: { title: '课程表管理', permission: true }
-                },
-                {
-                    // 课程表详情
-                    path: '/classDetails',
-                    component: resolve => require(['../components/page/dean/classDetails.vue'], resolve),
-                    meta: { title: '课程表详情', permission: true }
-                },
-                {
-                    // 年级管理
-                    path: '/nianjiManage',
-                    component: resolve => require(['../components/page/dean/nianjiManage.vue'], resolve),
-                    meta: { title: '年级管理', permission: true }
-                },
-                {
-                    // 学生管理
-                    path: '/studentManage',
-                    component: resolve => require(['../components/page/dean/studentManage.vue'], resolve),
-                    meta: { title: '学生管理', permission: true }
-                },
+                // {
+                //     // 新教职工管理
+                //     path: '/staffManageNew',
+                //     component: resolve => require(['../components/page/permission/staffManageNew.vue'], resolve),
+                //     meta: { title: '教职工管理' }
+                // },
+                // {
+                //     // 新增教职工
+                //     path: '/NEstaff',
+                //     component: resolve => require(['../components/page/permission/NEstaff.vue'], resolve),
+                //     meta: { title: '新增教职工' }
+                // },
+                // {
+                //     // 修改教职工
+                //     path: '/Estaff',
+                //     component: resolve => require(['../components/page/permission/Estaff.vue'], resolve),
+                //     meta: { title: '修改教职工' }
+                // },
+                // {
+                //     // 查看教职工管理
+                //     path: '/Vstaff',
+                //     component: resolve => require(['../components/page/permission/Vstaff.vue'], resolve),
+                //     meta: { title: '查看教职工管理' }
+                // },
+                // {
+                //     // 角色管理
+                //     path: '/roleManage',
+                //     component: resolve => require(['../components/page/permission/roleManage.vue'], resolve),
+                //     meta: { title: '角色管理' }
+                // },
+                // {
+                //     // 学期管理
+                //     path: '/semesterManage',
+                //     component: resolve => require(['../components/page/dean/semesterManage.vue'], resolve),
+                //     meta: { title: '学期管理' }
+                // },
+                // {
+                //     // 学科管理
+                //     path: '/subjectManage',
+                //     component: resolve => require(['../components/page/dean/subjectManage.vue'], resolve),
+                //     meta: { title: '学科管理' }
+                // },
+                // {
+                //     // 考试管理
+                //     path: '/examManage',
+                //     component: resolve => require(['../components/page/dean/examManage.vue'], resolve),
+                //     meta: { title: '考试管理', permission: true }
+                // },
+                // {
+                //     // 成绩管理
+                //     path: '/scoreManage',
+                //     component: resolve => require(['../components/page/dean/scoreManage.vue'], resolve),
+                //     meta: { title: '成绩管理' }
+                // },
+                // {
+                //     // 成绩详情
+                //     path: '/scoreList',
+                //     component: resolve => require(['../components/page/dean/scoreList.vue'], resolve),
+                //     meta: { title: '成绩详情' }
+                // },
+                // {
+                //     // 教室管理
+                //     path: '/roomManage',
+                //     component: resolve => require(['../components/page/dean/roomManage.vue'], resolve),
+                //     meta: { title: '教室管理' }
+                // },
+                // {
+                //     // 课程表管理
+                //     path: '/classManage',
+                //     component: resolve => require(['../components/page/dean/classManage.vue'], resolve),
+                //     meta: { title: '课程表管理', permission: true }
+                // },
+                // {
+                //     // 课程表详情
+                //     path: '/classDetails',
+                //     component: resolve => require(['../components/page/dean/classDetails.vue'], resolve),
+                //     meta: { title: '课程表详情', permission: true }
+                // },
+                // {
+                //     // 年级管理
+                //     path: '/nianjiManage',
+                //     component: resolve => require(['../components/page/dean/nianjiManage.vue'], resolve),
+                //     meta: { title: '年级管理', permission: true }
+                // },
+                // {
+                //     // 学生管理
+                //     path: '/studentManage',
+                //     component: resolve => require(['../components/page/dean/studentManage.vue'], resolve),
+                //     meta: { title: '学生管理', permission: true }
+                // },
                 {
                     // 短信
                     path: '/messManage',
@@ -230,34 +313,34 @@ export default new Router({
                     meta: { title: '所有公告', permission: true }
 
                 },
-                {
-                    // 部门管理
-                    path: '/bumen',
-                    component: resolve => require(['../components/page/org/bumen.vue'], resolve),
-                    meta: { title: '部门管理', permission: true }
+                // {
+                //     // 部门管理
+                //     path: '/bumen',
+                //     component: resolve => require(['../components/page/org/bumen.vue'], resolve),
+                //     meta: { title: '部门管理', permission: true }
 
-                },
-                {
-                    // 大区管理
-                    path: '/areaManage',
-                    component: resolve => require(['../components/page/org/areaManage.vue'], resolve),
-                    meta: { title: '大区管理', permission: true }
+                // },
+                // {
+                //     // 大区管理
+                //     path: '/areaManage',
+                //     component: resolve => require(['../components/page/org/areaManage.vue'], resolve),
+                //     meta: { title: '大区管理', permission: true }
 
-                },
-                {
-                    // 学区管理
-                    path: '/schoolAreaManage',
-                    component: resolve => require(['../components/page/org/schoolAreaManage.vue'], resolve),
-                    meta: { title: '学区管理', permission: true }
+                // },
+                // {
+                //     // 学区管理
+                //     path: '/schoolAreaManage',
+                //     component: resolve => require(['../components/page/org/schoolAreaManage.vue'], resolve),
+                //     meta: { title: '学区管理', permission: true }
 
-                },
-                {
-                    // 组织结构
-                    path: '/orgManage',
-                    component: resolve => require(['../components/page/org/orgManage.vue'], resolve),
-                    meta: { title: '组织结构', permission: true }
+                // },
+                // {
+                //     // 组织结构
+                //     path: '/orgManage',
+                //     component: resolve => require(['../components/page/org/orgManage.vue'], resolve),
+                //     meta: { title: '组织结构', permission: true }
 
-                },
+                // },
                 {
                     // 菜单管理
                     path: '/menuManage',
@@ -265,34 +348,34 @@ export default new Router({
                     meta: { title: '菜单管理', permission: true }
 
                 },
-                {
-                    // 学校部门管理
-                    path: '/bumenschool',
-                    component: resolve => require(['../components/page/org/bumenschool.vue'], resolve),
-                    meta: { title: '学校部门管理', permission: true }
+                // {
+                //     // 学校部门管理
+                //     path: '/bumenschool',
+                //     component: resolve => require(['../components/page/org/bumenschool.vue'], resolve),
+                //     meta: { title: '学校部门管理', permission: true }
 
-                },
-                {
-                    // 班级管理
-                    path: '/banjiManage',
-                    component: resolve => require(['../components/page/dean/banjiManage.vue'], resolve),
-                    meta: { title: '班级管理', permission: true }
+                // },
+                // {
+                //     // 班级管理
+                //     path: '/banjiManage',
+                //     component: resolve => require(['../components/page/dean/banjiManage.vue'], resolve),
+                //     meta: { title: '班级管理', permission: true }
 
-                },
-                {
-                    // 应用范围配置
-                    path: '/scopeConfig',
-                    component: resolve => require(['../components/page/app/scopeConfig.vue'], resolve),
-                    meta: { title: '应用范围配置', permission: true }
+                // },
+                // {
+                //     // 应用范围配置
+                //     path: '/scopeConfig',
+                //     component: resolve => require(['../components/page/app/scopeConfig.vue'], resolve),
+                //     meta: { title: '应用范围配置', permission: true }
 
-                },
-                {
-                    // 应用接口配置
-                    path: '/apiConfig',
-                    component: resolve => require(['../components/page/app/apiConfig.vue'], resolve),
-                    meta: { title: '应用接口配置', permission: true }
+                // },
+                // {
+                //     // 应用接口配置
+                //     path: '/apiConfig',
+                //     component: resolve => require(['../components/page/app/apiConfig.vue'], resolve),
+                //     meta: { title: '应用接口配置', permission: true }
 
-                }
+                // }
             ]
         },
         {

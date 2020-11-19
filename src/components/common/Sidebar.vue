@@ -105,8 +105,8 @@ export default {
                             icon: "iconfont icon-jiaozhigongguanli"
                         },
                         {
-                            index: "applyRecord",
-                            title: "申请记录",
+                            index: "roomApplyRecord",
+                            title: "教室申请记录",
                             icon: "iconfont icon-renwu"
                         },
                         {
@@ -123,9 +123,14 @@ export default {
                 },
                 {
                     icon: "iconfont icon-bingtu",
-                    index: "useCharts",
+                    index: "useChartsShow",
                     title: "教室使用情况",
                     subs: [
+                        {
+                            index: "useCharts",
+                            title: "教室使用情况",
+                            icon: "iconfont icon-bingtu"
+                        },
                         {
                             index: "semesterManage",
                             title: "学期管理",
@@ -179,7 +184,7 @@ export default {
                     title: "用户管理",
                     subs: [
                         {
-                            index: "userTable",
+                            index: "userList",
                             title: "用户列表",
                             icon: "iconfont icon-yonghu"
                         }
@@ -191,12 +196,12 @@ export default {
                     title: "权限管理",
                     subs: [
                         {
-                            index: "icon-kehuguanli",
+                            index: "roleList",
                             title: "角色列表",
                             icon: "iconfont icon-_yijicaidanduanxinguanli"
                         },
                         {
-                            index: "manageRecord",
+                            index: "authorityList",
                             title: "权限列表",
                             icon: "iconfont icon-tongdao"
                         }
@@ -206,7 +211,7 @@ export default {
                 {
                     icon: "iconfont icon-shangchuan1",
                     index: "fileUpload",
-                    title: "文件上传",
+                    title: "上传管理",
                     subs: [
                         {
                             index: "uploadRecord",
@@ -227,7 +232,7 @@ export default {
                 },
                 {
                     icon: "iconfont icon-yingyongguanli",
-                    index: "personalCentry",
+                    index: "changePsd",
                     title: "个人中心"
                 }
             ]

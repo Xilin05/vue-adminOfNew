@@ -167,36 +167,37 @@ export default new Router({
                      component: resolve => require(['../components/page/org/jobManage.vue'], resolve),
                      meta: { title: '职位管理' }
                  },
-                 {
-                     // 教职工管理
-                     path: '/staffManage',
-                     component: resolve => require(['../components/page/permission/staffManage.vue'], resolve),
-                     meta: { title: '教职工管理' }
-                 },*/
+                 */
+                {
+                    // 教职工管理
+                    path: '/staffManage',
+                    component: resolve => require(['../components/page/permission/staffManage.vue'], resolve),
+                    meta: { title: '教职工管理' }
+                },
                 // {
                 //     // 新教职工管理
                 //     path: '/staffManageNew',
                 //     component: resolve => require(['../components/page/permission/staffManageNew.vue'], resolve),
                 //     meta: { title: '教职工管理' }
                 // },
-                // {
-                //     // 新增教职工
-                //     path: '/NEstaff',
-                //     component: resolve => require(['../components/page/permission/NEstaff.vue'], resolve),
-                //     meta: { title: '新增教职工' }
-                // },
-                // {
-                //     // 修改教职工
-                //     path: '/Estaff',
-                //     component: resolve => require(['../components/page/permission/Estaff.vue'], resolve),
-                //     meta: { title: '修改教职工' }
-                // },
-                // {
-                //     // 查看教职工管理
-                //     path: '/Vstaff',
-                //     component: resolve => require(['../components/page/permission/Vstaff.vue'], resolve),
-                //     meta: { title: '查看教职工管理' }
-                // },
+                {
+                    // 新增教职工
+                    path: '/NEstaff',
+                    component: resolve => require(['../components/page/permission/NEstaff.vue'], resolve),
+                    meta: { title: '新增教职工' }
+                },
+                {
+                    // 修改教职工
+                    path: '/Estaff',
+                    component: resolve => require(['../components/page/permission/Estaff.vue'], resolve),
+                    meta: { title: '修改教职工' }
+                },
+                {
+                    // 查看教职工管理
+                    path: '/Vstaff',
+                    component: resolve => require(['../components/page/permission/Vstaff.vue'], resolve),
+                    meta: { title: '查看教职工管理' }
+                },
                 // {
                 //     // 角色管理
                 //     path: '/roleManage',

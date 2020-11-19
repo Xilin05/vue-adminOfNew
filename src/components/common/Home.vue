@@ -32,6 +32,14 @@ export default {
         vSidebar,
         vTags
     },
+    beforeCreate() {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            // token 没有 -> 登录
+            this.$router.push("/Login");
+        }
+    },
     created() {
         bus.$on("collapse", msg => {
             this.collapse = msg;

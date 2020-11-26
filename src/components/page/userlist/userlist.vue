@@ -44,16 +44,21 @@
         <div style="float:right;">
             <el-button type="success" @click='dlgNew = true'>新建</el-button>
         </div> -->
+
+        <!-- 搜索部分 -->
         <el-row>
             <el-col>
                 <el-input placeholder="请输入内容" v-model="query" class="input-with-select inputSearch">
                     <el-button slot="append" icon="el-icon-search"></el-button>
                 </el-input>
-                    <el-button type="primary">成功按钮</el-button>
+                    <el-button type="success">添加用户</el-button>
             </el-col>
         </el-row>
+
         <!-- 3. 表格 -->
-        <el-table
+        <!-- iclass用户列表 -->
+
+        <!-- <el-table
       :data="tableData"
       style="width: 100%">
       <el-table-column
@@ -93,7 +98,63 @@
         prop="operate"
         label="操作">
       </el-table-column>
-    </el-table>
+    </el-table> -->
+
+
+
+    <el-table :data="userlist" border stripe>
+        <!-- stripe: 斑马条纹
+        border：边框-->
+        <el-table-column type="index" label="#"></el-table-column>
+        <el-table-column prop="username" label="姓名"></el-table-column>
+        <el-table-column prop="email" label="邮箱"></el-table-column>
+        <el-table-column prop="mobile" label="电话"></el-table-column>
+        <el-table-column prop="role_name" label="角色"></el-table-column>
+        <el-table-column prop="create_time" label="创建时间">
+            <template slot-scope="userlist">
+                {{ userlist.row.create_time | fmtdate }}
+            </template>
+
+        </el-table-column>
+        <el-table-column label="状态">
+          <template slot-scope="scope">
+            <el-switch v-model="scope.row.mg_state" @change="userStateChanged(scope.row)"></el-switch>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button
+              type="primary"
+              icon="el-icon-edit"
+              size="mini"
+              circle
+              @click="showEditDialog(scope.row.id)"
+            ></el-button>
+            <el-button
+              type="danger"
+              icon="el-icon-delete"
+              size="mini"
+              circle
+              @click="removeUserById(scope.row.id)"
+            ></el-button>
+            <el-tooltip
+              class="item"
+              effect="dark"
+              content="角色分配"
+              :enterable="false"
+              placement="top"
+            >
+              <el-button
+                type="warning"
+                icon="el-icon-setting"
+                size="mini"
+                circle
+                @click="showSetRole(scope.row)"
+              ></el-button>
+            </el-tooltip>
+          </template>
+        </el-table-column>
+      </el-table>
         <!-- 4. 分页 -->
     </el-card>
 </div>
@@ -104,37 +165,28 @@
 export default {
     data() {
         return {
+            // userlist: [],
+            // totle: 0,
+            // "username": "tige117",
+            //     "mobile": "18616358651",
+            //     "type": 1,
+            //     "email": "tige112@163.com",
+            //     "create_time": "2017-11-09T20:36:26.000Z",
+            //     "mg_state": true, // 当前用户的状态
+            //     "role_name": "炒鸡管理员"
+            form: {
+                gangwei: "",
+                zhiwei: ""
+            },
+            userlist: [],
+            total: -1,
             // 获取用户列表查询参数对象
             query: "",
             // 当前页数
             pagenum: 1,
             // 每页显示多少数据
             pagesize: 10,
-            // userlist: [],
-            // totle: 0,
-            form: {
-                gangwei: "",
-                zhiwei: ""
-            },
-            tableData: [
-                {
-                    // date: "1",
-                    id: 1107,
-                    name: "王小虎",
-                    gender: "男",
-                    phone: "17876374525",
-                    role: "管理员"
-                    // address: "上海市普陀区金沙江路 1518 弄"
-                },
-                {
-                    // date: "2",
-                    id: 1107,
-                    name: "王小虎",
-                    gender: "男",
-                    phone: "17876374525",
-                    role: "管理员"
-                }
-            ]
+            tableData: []
         };
     },
     created() {
@@ -150,7 +202,22 @@ export default {
                     this.pagesize
                 }`
             );
-            console.log(res);
+            console.log(res.data);
+            const {
+                meta: { status, msg },
+                data: { users, total }
+            } = res.data;
+            if (status === 200) {
+                // 给表格赋值
+                this.userlist = users;
+                // this.tableData
+                // 给total赋值
+                this.total = total;
+                // 提示
+                this.$message.success(msg);
+            } else {
+                this.$message.warning(msg);
+            }
         }
         // async getUserList() {
         //     const { data: res } = await this.$http.get("users", {

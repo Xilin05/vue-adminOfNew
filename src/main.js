@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App';
 import MyHttpServer from "./plugins/http.js";
 import ElementUI from 'element-ui';
+import moment from 'moment'
 //引入阿里巴巴图标库
 import './assets/icon/iconfont.css';
 import './assets/iconfont/iconfont.css';
@@ -41,7 +42,14 @@ Vue.use(MyHttpServer);
 //     }
 // })
 
+// 全局过滤器 - 处理日期
+Vue.filter('fmtdate', (v) => {
+    return moment(v).format('YYYY - MM - DD');
+})
+
+
 new Vue({
     router,
+    // Moment,
     render: h => h(App)
 }).$mount('#app');

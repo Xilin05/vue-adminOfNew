@@ -18,11 +18,11 @@
             <!-- <el-breadcrumb-item>活动详情</el-breadcrumb-item> -->
         <!-- </el-breadcrumb> -->
         <!-- 2. 搜索 -->
-        <div class="searchitem">
-                        <el-input style='width:150px' v-model="form.num" placeholder="工号/学号" clearable></el-input>
+        <!-- <div class="searchitem">
+                        <el-input style='width:150px' v-model="query" placeholder="工号/学号" clearable></el-input>
                     </div>
                     <div class="searchitem">
-                        <el-input style='width:150px' v-model="form.name" placeholder="姓名" clearable></el-input>
+                        <el-input style='width:150px' v-model="query" placeholder="姓名" clearable></el-input>
                     </div>
         <div class="searchitem">
             <el-select style='width:120px' v-model="form.zhiwei" placeholder="角色" clearable>
@@ -39,19 +39,19 @@
                 <el-option label="讲师" value="4"></el-option>
                 <el-option label="学生" value="5"></el-option>
             </el-select>
-            <el-button type="primary" @click="openFullScreen" v-loading.fullscreen.lock="fullscreenLoading">搜索</el-button>
+            <el-button type="primary" @click="openFullScreen" >搜索</el-button>
         </div>
         <div style="float:right;">
             <el-button type="success" @click='dlgNew = true'>新建</el-button>
-        </div>
-        <!-- <el-row>
+        </div> -->
+        <el-row>
             <el-col>
                 <el-input placeholder="请输入内容" v-model="query" class="input-with-select inputSearch">
                     <el-button slot="append" icon="el-icon-search"></el-button>
                 </el-input>
                     <el-button type="primary">成功按钮</el-button>
             </el-col>
-        </el-row> -->
+        </el-row>
         <!-- 3. 表格 -->
         <el-table
       :data="tableData"
@@ -104,7 +104,14 @@
 export default {
     data() {
         return {
+            // 获取用户列表查询参数对象
             query: "",
+            // 当前页数
+            pagenum: 1,
+            // 每页显示多少数据
+            pagesize: 10,
+            // userlist: [],
+            // totle: 0,
             form: {
                 gangwei: "",
                 zhiwei: ""
@@ -126,28 +133,36 @@ export default {
                     gender: "男",
                     phone: "17876374525",
                     role: "管理员"
-                },
-                {
-                    // date: "3",
-                    id: 1107,
-                    name: "王小虎",
-                    gender: "男",
-                    phone: "17876374525",
-                    role: "管理员"
-                },
-                {
-                    // date: "4",
-                    id: 1107,
-                    name: "王小虎",
-                    gender: "男",
-                    phone: "17876374525",
-                    role: "管理员"
                 }
             ]
         };
     },
+    created() {
+        this.getUserList();
+    },
     methods: {
-        openFullScreen() {}
+        openFullScreen() {},
+        async getUserList() {
+            const AUTH_TOKEN = localStorage.getItem("token");
+            this.$http.defaults.headers.common["Authorization"] = AUTH_TOKEN;
+            const res = await this.$http.get(
+                `users?query=${this.query}&pagenum=${this.pagenum}&pagesize=${
+                    this.pagesize
+                }`
+            );
+            console.log(res);
+        }
+        // async getUserList() {
+        //     const { data: res } = await this.$http.get("users", {
+        //         params: this.queryInfo
+        //     });
+        //     if (res.meta.status !== 200) {
+        //         console.log(res.meta.status);
+        //         return this.$message.error("获取用户列表失败！");
+        //     }
+        //     this.userlist = res.data.users;
+        //     this.totle = res.data.totle;
+        // }
     }
 };
 </script>

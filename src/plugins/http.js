@@ -1,7 +1,7 @@
 // 插件模块
 
 import axios from "axios";
-import QS from 'qs'
+// import QS from 'qs'
 // axios.defaults.headers.post['Content']
 
 const MyHttpServer = {};

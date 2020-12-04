@@ -31,8 +31,8 @@
                      <el-form-item label="身份证号：">
                         <el-input style='width:220px' v-model="form.name4" clearable></el-input>
                     </el-form-item>
-                    
-                   
+
+
                 </el-form>
                 </el-col>
 
@@ -46,7 +46,7 @@
                         </el-radio-group>
                     </el-form-item>
                     <el-form-item label="状态：">
-                        
+
                         <el-radio-group v-model="radio3">
                             <el-radio label="1">正常</el-radio>
                             <el-radio label="2">注销</el-radio>
@@ -55,7 +55,7 @@
                     <el-form-item label="归属学校：" v-show="nameVisible">
                         <el-input style='width:220px' v-model="form.name8" clearable></el-input>
                     </el-form-item>
-                    
+
                     <el-form-item label="手机号：">
                         <el-input style='width:220px' v-model="form.name5" clearable></el-input>
                     </el-form-item>
@@ -74,7 +74,7 @@
                         <el-date-picker v-model="form.name10" type="date" clearable placeholder="选择日期">
                         </el-date-picker>
                     </el-form-item>
-                    
+
                 </el-form>
                 </el-col>
             </el-row>
@@ -89,89 +89,87 @@
 </template>
 
 <script>
-    export default {
-        name: 'baseform',
-        data: function () {
-            return {
-                imageUrl: '',
-                labelPosition: 'right',
-                nameVisible:false,
-                radio2:'',
-                radio3:'',
-                form: {
-                    name: '',
-                    name2: '',
-                    name3: '',
-                    name4: '',
-                    name5: '',
-                    name6: '',
-                    name7: '',
-                    name8: '',
-                    name9: '',
-                    name10: '',
-                    name11: ''
-                }
+// import { request } from "~/config/request.js";
+export default {
+    name: "baseform",
+    data: function() {
+        return {
+            imageUrl: "",
+            labelPosition: "right",
+            nameVisible: false,
+            radio2: "",
+            radio3: "",
+            form: {
+                name: "",
+                name2: "",
+                name3: "",
+                name4: "",
+                name5: "",
+                name6: "",
+                name7: "",
+                name8: "",
+                name9: "",
+                name10: "",
+                name11: ""
             }
+        };
+    },
+    methods: {
+        back() {
+            this.$router.push("/staffManage");
         },
-        methods: {
-            back() {
-                this.$router.push('/staffManage')
-            },
-            handleAvatarSuccess(res, file) {
-                this.imageUrl = URL.createObjectURL(file.raw);
-            },
-            beforeAvatarUpload(file) {
-                const isJPG = file.type === 'image/jpeg';
-                const isLt2M = file.size / 1024 / 1024 < 2;
+        handleAvatarSuccess(res, file) {
+            this.imageUrl = URL.createObjectURL(file.raw);
+        },
+        beforeAvatarUpload(file) {
+            const isJPG = file.type === "image/jpeg";
+            const isLt2M = file.size / 1024 / 1024 < 2;
 
-                if (!isJPG) {
-                    this.$message.error('上传头像图片只能是 JPG 格式!');
-                }
-                if (!isLt2M) {
-                    this.$message.error('上传头像图片大小不能超过 2MB!');
-                }
-                return isJPG && isLt2M;
-            },
-            handnameVisible(){
-                this.nameVisible = this.radio2 == '1' ? false : true;
-            },
+            if (!isJPG) {
+                this.$message.error("上传头像图片只能是 JPG 格式!");
+            }
+            if (!isLt2M) {
+                this.$message.error("上传头像图片大小不能超过 2MB!");
+            }
+            return isJPG && isLt2M;
+        },
+        handnameVisible() {
+            this.nameVisible = this.radio2 == "1" ? false : true;
         }
     }
-
+};
 </script>
 
 <style>
-    #nestaff
-    .el-upload--text {
-        width: 175px;
-        height:175px;
-    }
+#nestaff .el-upload--text {
+    width: 175px;
+    height: 175px;
+}
 
-    #nestaff .el-upload {
-        border: 1px dashed #d9d9d9;
-        border-radius: 6px;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-    }
+#nestaff .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
 
-    #nestaff .el-upload:hover {
-        border-color: #409EFF;
-    }
+#nestaff .el-upload:hover {
+    border-color: #409eff;
+}
 
-    #nestaff  .avatar-uploader-icon {
-        font-size: 28px;
-        color: #8c939d;
-        width: 175px;
-        height: 175px;
-        line-height: 175px;
-        text-align: center;
-    }
+#nestaff .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 175px;
+    height: 175px;
+    line-height: 175px;
+    text-align: center;
+}
 
-    #nestaff .avatar {
-        width: 175px;
-        height: 175px;
-        display: block;
-    }
-
+#nestaff .avatar {
+    width: 175px;
+    height: 175px;
+    display: block;
+}
 </style>

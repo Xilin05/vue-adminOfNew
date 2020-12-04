@@ -6,11 +6,10 @@
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>
                     <i class="el-icon-date"></i> 用户管理</el-breadcrumb-item>
-                <el-breadcrumb-item>用户列表</el-breadcrumb-item>
+                <el-breadcrumb-item>用户列表测试页  </el-breadcrumb-item>
             </el-breadcrumb>
         </div>
     <el-card class="box-card">
-
         <!-- <el-breadcrumb separator="/"> -->
             <!-- <el-breadcrumb-item :to="{ path: '/dashboard' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item><a href="#">用户管理</a></el-breadcrumb-item>
@@ -46,10 +45,16 @@
         </div> -->
 
         <!-- 搜索部分 -->
-        <el-row>
+        <el-row style="margin-bottom:10px">
             <el-col>
-                <el-input placeholder="请输入内容" v-model="query" class="input-with-select inputSearch">
-                    <el-button slot="append" icon="el-icon-search"></el-button>
+                <el-input
+                 @clear="loadUserList()"
+                 placeholder="请输入内容"
+                 v-model="query"
+                 class="input-with-select inputSearch"
+                 clearable
+                 >
+                    <el-button @click.prevent="searchUser()" slot="append" icon="el-icon-search"></el-button>
                 </el-input>
                     <el-button type="success">添加用户</el-button>
             </el-col>
@@ -100,28 +105,27 @@
       </el-table-column>
     </el-table> -->
 
-
-
     <el-table :data="userlist" border stripe>
         <!-- stripe: 斑马条纹
         border：边框-->
-        <el-table-column type="index" label="#"></el-table-column>
-        <el-table-column prop="username" label="姓名"></el-table-column>
-        <el-table-column prop="email" label="邮箱"></el-table-column>
-        <el-table-column prop="mobile" label="电话"></el-table-column>
-        <el-table-column prop="role_name" label="角色"></el-table-column>
-        <el-table-column prop="create_time" label="创建时间">
+        <el-table-column type="index" label="#" align="center"></el-table-column>
+        <el-table-column prop="username" align="center" label="姓名"></el-table-column>
+        <el-table-column prop="email" align="center" label="邮箱"></el-table-column>
+        <el-table-column prop="mobile" align="center" label="电话"></el-table-column>
+        <el-table-column prop="role_name" label="角色" align="center"></el-table-column>
+        <el-table-column prop="create_time" align="center" width="160" label="创建时间">
             <template slot-scope="userlist">
                 {{ userlist.row.create_time | fmtdate }}
             </template>
 
         </el-table-column>
-        <el-table-column label="状态">
+        <el-table-column label="状态" align="center" width="100" >
           <template slot-scope="scope">
-            <el-switch v-model="scope.row.mg_state" @change="userStateChanged(scope.row)"></el-switch>
+            <el-switch v-model="scope.row.mg_state" active-color="#13ce66"
+  inactive-color="#ff4949" @change="userStateChanged(scope.row)"></el-switch>
           </template>
         </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" width="180" align="center">
           <template slot-scope="scope">
             <el-button
               type="primary"
@@ -156,12 +160,14 @@
         </el-table-column>
       </el-table>
         <!-- 4. 分页 -->
-    </el-card>
+    <pagination :handleSizeChange="handleSizeChange" :handleCurrentChange="handleCurrentChange" :pagesize="pagesize" :pageSizeSelect="pageSizeSelect" :total="total" />
+      </el-card>
 </div>
 
 </template>
 
 <script>
+import pagination from "@/components/common/pagination.vue";
 export default {
     data() {
         return {
@@ -193,7 +199,22 @@ export default {
         this.getUserList();
     },
     methods: {
+        // 分页功能相关方法
+        handleSizeChange(val) {
+            this.pagesize = val;
+            // this.pagenum = 1;
+            this.getUserList();
+            this.pagenum = 1;
+            console.log(`每页 ${val} 条`);
+        },
+        handleCurrentChange(val) {
+            console.log(`当前页: ${val}`);
+            this.pagenum = val;
+            this.getUserList();
+        },
+
         openFullScreen() {},
+        // 获取用户列表
         async getUserList() {
             const AUTH_TOKEN = localStorage.getItem("token");
             this.$http.defaults.headers.common["Authorization"] = AUTH_TOKEN;
@@ -202,7 +223,7 @@ export default {
                     this.pagesize
                 }`
             );
-            console.log(res.data);
+            // console.log(res.data);
             const {
                 meta: { status, msg },
                 data: { users, total }
@@ -218,7 +239,7 @@ export default {
             } else {
                 this.$message.warning(msg);
             }
-        }
+        },
         // async getUserList() {
         //     const { data: res } = await this.$http.get("users", {
         //         params: this.queryInfo
@@ -230,6 +251,17 @@ export default {
         //     this.userlist = res.data.users;
         //     this.totle = res.data.totle;
         // }
+        // 搜索用户
+        searchUser() {
+            this.getUserList();
+        },
+        // 清空搜索框，重新获取数据
+        loadUserList() {
+            this.getUserList();
+        }
+    },
+    components: {
+        pagination
     }
 };
 </script>
@@ -244,5 +276,7 @@ export default {
 .searchitem {
     display: inline-block;
     margin-bottom: 10px;
+    /* display: flex;
+    justify-content: space-between; */
 }
 </style>

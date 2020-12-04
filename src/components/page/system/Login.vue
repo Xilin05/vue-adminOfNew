@@ -15,10 +15,10 @@
             </div>
                 <div style="display:flex;width:80%;justify-content:space-between;text-center:center;">
               <el-form-item style="width:60%">
-            <el-button 
-                class="bbutton" 
-                style="width:60%;min-width:79px" 
-                type="primary" 
+            <el-button
+                class="bbutton"
+                style="width:60%;min-width:79px"
+                type="primary"
                 @click.prevent="submitForm('ruleForm')"
                 @keyup.enter.native="submitForm('ruleForm')"
             >
@@ -29,7 +29,7 @@
           <el-button class="bbutton" style="width:60%;min-width:79px" @click.prevent="resetForm('ruleForm')">重置</el-button>
           </el-form-item>
             </div>
-            
+
         </el-form>
         <!-- </div> -->
         <el-form class="big-contain big-box-sign" :class="{active:isLogin}" :model="ruleForm" status-icon :rules="rules" ref="forgetForm" label-width="100px" v-else>
@@ -74,6 +74,7 @@
 </template>
 
 <script>
+import btn from "@/components/common/btn.vue";
 export default {
     name: "login-register",
     data() {
@@ -153,6 +154,9 @@ export default {
         };
     },
     methods: {
+        onclick(text) {
+            alert(text);
+        },
         resetForm(formName) {
             this.$refs[formName].resetFields();
         },
@@ -247,6 +251,9 @@ export default {
                 alert("填写不能为空！");
             }
         }
+    },
+    components: {
+        btn
     }
 };
 </script>

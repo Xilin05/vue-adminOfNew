@@ -13,7 +13,7 @@
           label-width="100px"
           v-if="isLogin"
         >
-          <div class="btitle">账号登录1</div>
+          <div class="btitle">账号登录</div>
           <div class="bform1">
             <el-form-item label="用户名" prop="username">
               <el-input class v-model="ruleForm.username" autocomplete="off"></el-input>

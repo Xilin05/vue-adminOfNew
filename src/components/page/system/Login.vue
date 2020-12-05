@@ -2,87 +2,22 @@
   <div class="login-register">
     <div class="contain">
       <div class="big-box" :class="{active:isLogin}">
-        <!-- <div class="" > -->
-        <el-form
-          class="big-contain big-box-login"
-          :class="{active:isOpacity}"
-          :model="ruleForm"
-          status-icon
+        <login
+          :title="`账号登录`"
+          :isState="isLogin"
+          :ruleForm="ruleForm"
           :rules="rules"
-          ref="ruleForm"
-          label-width="100px"
-          v-if="isLogin"
-        >
-          <div class="btitle">账号登录</div>
-          <div class="bform1">
-            <el-form-item label="用户名" prop="username">
-              <el-input class v-model="ruleForm.username" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="密码" prop="password">
-              <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
-            </el-form-item>
-          </div>
-          <div style="display:flex;width:80%;justify-content:space-between;text-center:center;">
-            <el-form-item style="width:60%">
-              <el-button
-                class="bbutton"
-                style="width:60%;min-width:79px"
-                type="primary"
-                @click.prevent="submitForm('ruleForm')"
-                @keyup.enter.native="submitForm('ruleForm')"
-              >提交</el-button>
-            </el-form-item>
-            <el-form-item style="width:60%">
-              <el-button
-                class="bbutton"
-                style="width:60%;min-width:79px"
-                @click.prevent="resetForm('ruleForm')"
-              >重置</el-button>
-            </el-form-item>
-          </div>
-        </el-form>
-        <!-- </div> -->
-        <el-form
-          class="big-contain big-box-sign"
-          :class="{active:isLogin}"
-          :model="ruleForm"
-          status-icon
+          :submitForm="submitForm"
+          :validatetext="`ruleForm`"
+        />
+        <login
+          :title="`找回密码`"
+          :isState="!isLogin"
+          :ruleForm="forgetForm"
           :rules="rules"
-          ref="forgetForm"
-          label-width="100px"
-          v-else
-        >
-          <div class="btitle">找回密码</div>
-          <div class="bform1">
-            <el-form-item label="用户名" prop="username01">
-              <el-input class v-model="forgetForm.username" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="邮箱" prop="useremail">
-              <el-input type="email" v-model="forgetForm.useremail" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="验证码" prop="vecode">
-              <el-input type="text" v-model="forgetForm.vecode" autocomplete="off"></el-input>
-            </el-form-item>
-          </div>
-          <div style="display:flex;width:80%;justify-content:space-between;text-center:center;">
-            <el-form-item style="width:60%">
-              <el-button
-                class="bbutton"
-                style="width:60%;min-width:79px"
-                type="primary"
-                @click.prevent="submitForgetForm('forgetForm')"
-              >提交</el-button>
-            </el-form-item>
-            <el-form-item style="width:60%">
-              <el-button
-                class="bbutton"
-                style="width:60%;min-width:79px"
-                @click.prevent="resetForm('forgetForm')"
-              >重置</el-button>
-            </el-form-item>
-          </div>
-          <el-form-item style></el-form-item>
-        </el-form>
+          :submitForm="submitForm"
+          :validatetext="`forgetForm`"
+        />
       </div>
       <div class="small-box" :class="{active:isLogin}">
         <div class="small-contain" v-if="isLogin">
@@ -101,6 +36,7 @@
 </template>
 
 <script>
+import login from "@/components/page/system/common/login.vue";
 import btn from "@/components/common/btn.vue";
 export default {
   name: "login-register",
@@ -169,14 +105,14 @@ export default {
       },
 
       ruleForm: {
-        username: "admin",
-        password: "",
+        username: "admin111",
+        password: "12345678",
         // vecode: ""
       },
       forgetForm: {
         username: "admin",
-        useremail: "",
-        vecode: "",
+        useremail: "123",
+        vecode: "123",
       },
     };
   },
@@ -282,6 +218,7 @@ export default {
   },
   components: {
     btn,
+    login,
   },
 };
 </script>
@@ -372,10 +309,10 @@ el-form-item {
   transition: all 1s;
 }
 
-.big-box-login {
+/* .big-box-login {
   opacity: 0;
   transition: all 0.6s;
-}
+} */
 .big-box-login.active {
   opacity: 1;
   transition: all 0.6s;
